@@ -2,16 +2,41 @@
 
 ![example image](./readme_img/marquee.gif)
 
-This is React component which enable use <marquee> tag.
+This is React component which enable use &lt;marquee&gt; tag.
 Instead of implementing the single effects, I did double.
 Marquee is a tag which is extremely opposed to the use of MDN(https://developer.mozilla.org/ko/docs/Web/HTML/Element/marquee), but there is a need to write.
 This marquee is recommended that the elements to flow must be used **when the width of elements is longer than the width of the screen.**
 
 
-리액트에서 <marquee> tag를 사용할 수 있도록한 component입니다.
-단순 <marquee>의 효과를 구현한 것이 아니라 double, 이중으로 흐르도록 하였습니다.
-<marquee>는 MDN(https://developer.mozilla.org/ko/docs/Web/HTML/Element/marquee)에서 굉장히 사용을 반대하고 있는 tag이지만, 꼭 써야할 상황이 있습니다.
+리액트에서 &lt;marquee&gt; tag를 사용할 수 있도록한 component입니다.
+단순 &lt;marquee&gt;의 효과를 구현한 것이 아니라 double, 이중으로 흐르도록 하였습니다.
+&lt;marquee&gt;는 MDN(https://developer.mozilla.org/ko/docs/Web/HTML/Element/marquee)에서 굉장히 사용을 반대하고 있는 tag이지만, 꼭 써야할 상황이 있습니다.
 이 marquee component는 흐르게할 요소가 **반드시 화면의 너비보다 길때 사용하는것을 권합니다.**
+
+You can install this Component following below (at terminal)
+```
+npm install react-marquee-double
+```
+
+You can use this Component like this
+```
+import MarqueeDouble from 'react-marquee-double';
+
+...
+
+// JSX
+<MarqueeDouble
+  ref={(ref) => {this.marquee = ref}}
+  step={1} interval={20}
+  autoStart={true}
+  direction={'left'}
+  delay={1000}
+  onStart={()=>{this.marquee.delay()}}>
+  <h1>I’m like TT Just like TT Tell me that you’d be my baby<h1>
+</MarqueeDouble>  
+```
+
+
 
 ## props
 
