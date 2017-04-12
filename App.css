@@ -1,0 +1,37 @@
+
+.MarqueeC-Div {
+    position: relative;
+    text-align: center;
+}
+
+.Marquee-Mover {
+    position: relative;
+    box-sizing: padding-box;
+    text-align: center;
+}
+
+.Marquee-Child-Double {
+    display: inline-block;
+    box-sizing: padding-box;
+    padding-right: 80px;
+}
+
+.Marquee-Child-Single {
+    white-space: nowrap;
+    display: inline-block;
+}
+
+.Marquee-Table {
+    margin: 0 auto;
+    border-spacing: 0;
+}
+
+.Marquee-Table td {
+    margin: 0;
+    padding: 0;
+}
+
+.Marquee-content {
+    white-space: nowrap;
+    display: inline-block;
+}

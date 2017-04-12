@@ -1,0 +1,34 @@
+{
+  "name": "react-marquee-double",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "./node_modules/.bin/babel helloworld.js -o index.js",
+    "prepublish": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/graykick/react-marquee-double.git"
+  },
+  "author": "graykick <graykick@naver.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/graykick/react-marquee-double/issues"
+  },
+  "homepage": "https://github.com/graykick/react-marquee-double#readme",
+  "dependencies": {
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1"
+  },
+  "babel": {
+    "presets": [ "es2015", "react"]
+  }
+}
