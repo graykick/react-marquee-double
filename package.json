@@ -1,6 +1,6 @@
 {
   "name": "react-marquee-double",
-  "version": "0.1.1",
+  "version": "0.1.5",
   "description": "no dependencies, React marquee-double component",
   "main": "index.js",
   "scripts": {
@@ -29,6 +29,9 @@
     "babel-preset-stage-0": "^6.24.1"
   },
   "babel": {
-    "presets": [ "es2015", "react"]
+    "presets": [
+      "es2015",
+      "react"
+    ]
   }
 }

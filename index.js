@@ -14,6 +14,8 @@ var _reactDom = require('react-dom');
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
+require('./App.css');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -28,37 +30,6 @@ var defaultPropsFunc = function defaultPropsFunc(funcName) {
     };
 };
 
-var MarqueeC_Div = {
-    position: 'relative',
-    textAlign: 'center'
-};
-
-var Marquee_Mover = {
-    position: 'relative',
-    boxSizing: 'padding - box',
-    textAlign: 'center'
-};
-
-var Marquee_Child_Single = {
-    whiteSpace: 'nowrap',
-    display: 'inline-block'
-};
-
-var Marquee_Table = {
-    margin: '0 auto',
-    borderSpacing: '0'
-};
-
-var Marquee_Table_td = {
-    margin: '0',
-    padding: '0'
-};
-
-var Marquee_content = {
-    whiteSpace: 'nowrap',
-    display: 'inline-block'
-};
-
 var propTypes = {
     loop: _react2.default.PropTypes.bool,
     space: _react2.default.PropTypes.number,
@@ -71,7 +42,6 @@ var propTypes = {
     delay: _react2.default.PropTypes.number,
     autoStart: _react2.default.PropTypes.bool
 };
-
 var defaultProps = {
     loop: true,
     space: 100,
@@ -81,7 +51,7 @@ var defaultProps = {
     onEnd: defaultPropsFunc('onEnd'),
     interval: 33,
     direction: 'left',
-    delay: 2000,
+    delay: 3200,
     autoStart: false
 };
 
@@ -94,22 +64,21 @@ var MarqueeDouble = function (_Component) {
         var _this = _possibleConstructorReturn(this, (MarqueeDouble.__proto__ || Object.getPrototypeOf(MarqueeDouble)).call(this, props));
 
         _this.mover;
+        _this.delayer;
         _this.widths = {
             singleWidth: undefined,
             containerWidth: undefined,
             moverWidth: undefined
         };
-
         _this.state = {
-            left: -1,
-            right: -1,
+            left: 0,
+            right: 0,
             singleWidth: -1,
             moverWidth: -1,
             containerWidth: -1,
             viewPortWidth: -1,
             isMove: _this.props.autoStart
         };
-
         _this.moveTo = {
             left: function left() {
                 _this.setState({ left: 0 });
@@ -120,23 +89,22 @@ var MarqueeDouble = function (_Component) {
                 });
             }
         };
-
         _this.direction = {
             left: function left() {
                 _this.setState({
                     left: _this.state.left - _this.props.step
                 });
-                _this.moverDivNode.style.left = _this.state.left + 'px';
+                // this.moverDivNode.style.transform = `translateX(${this.state.left}px)`;
             },
             right: function right() {
                 _this.setState({
                     right: _this.state.right - _this.props.step
                 });
-                _this.moverDivNode.style.right = _this.state.right + 'px';
+                // this.moverDivNode.style.transform = `translateX(${this.state.right}px)`;
             }
         };
-
         _this.move = _this.move.bind(_this);
+        _this.delay = _this.delay.bind(_this);
         return _this;
     }
 
@@ -164,7 +132,7 @@ var MarqueeDouble = function (_Component) {
             var delay = this.props.delay;
 
             this.stop();
-            setTimeout(function () {
+            this.delayer = setTimeout(function () {
                 _this2.start();
             }, delay);
         }
@@ -186,34 +154,25 @@ var MarqueeDouble = function (_Component) {
                 direction = _props.direction,
                 space = _props.space,
                 delay = _props.delay;
-
             // 이벤트 발생
 
             if (direction == 'left' && left == 0 || direction == 'right' && right == containerWidth - viewPortWidth) {
                 onStart();
-                console.log("on start");
             }
-
-            if (direction == 'left' && left < -moverWidth / 2 || direction == 'right' && right < moverWidth - (singleWidth + viewPortWidth)) {
-                console.log("in if");
-                console.log(left);
+            if (direction == 'left' && left <= -moverWidth / 2 || direction == 'right' && right < moverWidth - (singleWidth + viewPortWidth)) {
                 this.moveTo[direction]();
                 return;
             }
-
             this.direction[direction]();
         }
     }, {
         key: 'componentDidMount',
         value: function componentDidMount() {
-            console.log("did monut");
-
             var _props2 = this.props,
                 interval = _props2.interval,
                 direction = _props2.direction,
                 autoStart = _props2.autoStart,
                 delay = _props2.delay;
-
 
             _reactDom2.default.findDOMNode(this.single).style.display = "inline-block";
             this.singleNode = _reactDom2.default.findDOMNode(this.single);
@@ -221,25 +180,21 @@ var MarqueeDouble = function (_Component) {
             this.containerNode = _reactDom2.default.findDOMNode(this.container);
 
             var singleWidth = this.singleNode.offsetWidth;
-            console.log("single width = " + singleWidth);
 
             this.moverDivNode.style.width = singleWidth * 2 + 'px';
             this.containerNode.style.width = singleWidth * 2 + 'px';
 
             var moverWidth = this.moverDivNode.offsetWidth;
             var containerWidth = this.containerNode.offsetWidth;
-            console.log("container width = " + moverWidth);
-
             var viewPortWidth = window.innerWidth || document.body.clientWidth;
+
             this.setState({ singleWidth: singleWidth, moverWidth: moverWidth, containerWidth: containerWidth, viewPortWidth: viewPortWidth });
-            console.log(viewPortWidth + ", " + singleWidth + ", " + moverWidth);
             if (direction == 'right') {
                 this.moverDivNode.style.right = containerWidth - viewPortWidth + 'px';
                 this.setState({
                     right: containerWidth - viewPortWidth
                 });
             }
-
             if (autoStart) {
                 if (delay > 0) {
                     this.delay();
@@ -252,6 +207,7 @@ var MarqueeDouble = function (_Component) {
         key: 'componentWillUnmount',
         value: function componentWillUnmount() {
             clearInterval(this.mover);
+            clearTimeout(this.delayer);
         }
     }, {
         key: 'render',
@@ -261,62 +217,55 @@ var MarqueeDouble = function (_Component) {
             var _props3 = this.props,
                 space = _props3.space,
                 direction = _props3.direction;
+            var left = this.state.left;
 
             var style = {
                 paddingRight: direction == 'left' ? space + 'px' : 0,
                 paddingLeft: direction == 'right' ? space + 'px' : 0
             };
-
+            var marqueeStyle = {
+                transform: 'translateX(' + left + 'px)'
+            };
             var single = _react2.default.createElement(
                 'span',
-                { className: 'Marquee-Child-Single', style: style,
-                    ref: function ref(_ref) {
+                { className: 'Marquee-Child-Single', style: style, ref: function ref(_ref) {
                         _this3.single = _ref;
                     } },
-                ' ',
-                this.props.children,
-                ' '
+                this.props.children
             );
             return _react2.default.createElement(
                 'div',
-                { className: 'MarqueeC-Div', style: MarqueeC_Div,
-                    ref: function ref(_ref3) {
+                { className: 'MarqueeC-Div', ref: function ref(_ref3) {
                         _this3.container = _ref3;
                     } },
                 _react2.default.createElement(
                     'div',
-                    { className: 'Marquee-Mover', style: Marquee_Mover,
-                        ref: function ref(_ref2) {
+                    { className: 'Marquee-Mover', style: marqueeStyle, ref: function ref(_ref2) {
                             _this3.moverDiv = _ref2;
                         } },
                     _react2.default.createElement(
                         'table',
-                        { className: 'Marquee-Table', style: Marquee_Table },
+                        { className: 'Marquee-Table' },
                         _react2.default.createElement(
-                            'tr',
+                            'tbody',
                             null,
                             _react2.default.createElement(
-                                'td',
-                                { style: Marquee_Table_td },
-                                ' ',
-                                single,
-                                ' '
-                            ),
-                            ' ',
-                            _react2.default.createElement(
-                                'td',
-                                { style: Marquee_Table_td },
-                                ' ',
-                                single,
-                                ' '
-                            ),
-                            ' '
-                        ),
-                        ' '
-                    ),
-                    ' '
-                ),
-                ' '
+                                'tr',
+                                null,
+                                _react2.default.createElement(
+                                    'td',
+                                    { style: { padding: 0 } },
+                                    single
+                                ),
+                                _react2.default.createElement(
+                                    'td',
+                                    { style: { padding: 0 } },
+                                    single
+                                )
+                            )
+                        )
+                    )
+                )
             );
         }
     }]);
