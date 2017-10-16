@@ -235,7 +235,7 @@ var MarqueeDouble = function (_Component) {
             );
             return _react2.default.createElement(
                 'div',
-                { className: 'MarqueeC-Div', ref: function ref(_ref3) {
+                { className: this.props.className ? 'MarqueeC-Div ' + this.props.className : 'MarqueeC-Div', ref: function ref(_ref3) {
                         _this3.container = _ref3;
                     } },
                 _react2.default.createElement(
