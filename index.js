@@ -26,7 +26,9 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var defaultPropsFunc = function defaultPropsFunc(funcName) {
     return function () {
-        console.warn(funcName + ' is not defined');
+        if(window.location.host.indexOf('localhost') > -1) {
+            console.info(funcName + ' is not defined');
+        }
     };
 };
 
