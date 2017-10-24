@@ -1,6 +1,6 @@
 {
   "name": "react-marquee-double",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "no dependencies, React marquee-double component",
   "main": "index.js",
   "scripts": {
