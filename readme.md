@@ -10,7 +10,7 @@ This marquee is recommended that the elements to flow must be used **when the wi
 
 리액트에서 &lt;marquee&gt; tag를 사용할 수 있도록한 component입니다.
 단순 &lt;marquee&gt;의 효과를 구현한 것이 아니라 double, 이중으로 흐르도록 하였습니다.
-&lt;marquee&gt;는 MDN(https://developer.mozilla.org/ko/docs/Web/HTML/Element/marquee)에서 굉장히 사용을 반대하고 있는 tag이지만, 꼭 써야할 상황이 있습니다.
+&lt;marquee&gt;는 MDN(https://developer.mozilla.org/ko/docs/Web/HTML/Element/marquee) 에서 굉장히 사용을 반대하고 있는 tag이지만, 꼭 써야할 상황이 있습니다.
 이 marquee component는 흐르게할 요소가 **반드시 화면의 너비보다 길때 사용하는것을 권합니다.**
 
 You can install this Component following below (at terminal)
