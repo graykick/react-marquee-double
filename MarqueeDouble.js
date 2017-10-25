@@ -4,7 +4,9 @@ import './App.css';
 
 const defaultPropsFunc = (funcName) => {
     return () => {
-        console.warn(`${funcName} is not defined`);
+        if (window.location.host.indexOf('localhost') > -1) {
+            console.info(funcName + ' is not defined');
+        }
     }
 }
 
@@ -178,7 +180,7 @@ class MarqueeDouble extends Component {
             <span className="Marquee-Child-Single" style={style} ref= {(ref => {this.single = ref})}>{this.props.children}</span>
         );
         return (
-            <div className="MarqueeC-Div" ref={(ref) => {
+            <div className={this.props.className ? 'MarqueeC-Div ' + this.props.className : 'MarqueeC-Div'} ref={(ref) => {
                 this.container = ref
             }}>
                 <div className="Marquee-Mover" style={marqueeStyle} ref={(ref) => {
