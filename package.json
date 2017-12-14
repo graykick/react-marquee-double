@@ -18,9 +18,9 @@
     "url": "https://github.com/graykick/react-marquee-double/issues"
   },
   "homepage": "https://github.com/graykick/react-marquee-double#readme",
-  "dependencies": {
-    "react": "^15.5.4",
-    "react-dom": "^15.5.4"
+  "peerDependencies": {
+    "react": "^15.0.0-0 || ^16.0.0-0",
+    "react-dom": "^15.0.0-0 || ^16.0.0-0"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
