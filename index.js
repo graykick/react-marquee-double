@@ -14,6 +14,10 @@ var _reactDom = require('react-dom');
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 require('./App.css');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -33,16 +37,16 @@ var defaultPropsFunc = function defaultPropsFunc(funcName) {
 };
 
 var propTypes = {
-    loop: _react2.default.PropTypes.bool,
-    space: _react2.default.PropTypes.number,
-    step: _react2.default.PropTypes.number,
-    onStart: _react2.default.PropTypes.func,
-    onBounce: _react2.default.PropTypes.func,
-    onEnd: _react2.default.PropTypes.func,
-    interval: _react2.default.PropTypes.number,
-    direction: _react2.default.PropTypes.string,
-    delay: _react2.default.PropTypes.number,
-    autoStart: _react2.default.PropTypes.bool
+    loop: _propTypes2.default.bool,
+    space: _propTypes2.default.number,
+    step: _propTypes2.default.number,
+    onStart: _propTypes2.default.func,
+    onBounce: _propTypes2.default.func,
+    onEnd: _propTypes2.default.func,
+    interval: _propTypes2.default.number,
+    direction: _propTypes2.default.string,
+    delay: _propTypes2.default.number,
+    autoStart: _propTypes2.default.bool
 };
 var defaultProps = {
     loop: true,
