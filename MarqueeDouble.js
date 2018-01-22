@@ -1,5 +1,6 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
 import './App.css';
 
 const defaultPropsFunc = (funcName) => {
@@ -11,16 +12,16 @@ const defaultPropsFunc = (funcName) => {
 }
 
 const propTypes = {
-    loop: React.PropTypes.bool,
-    space: React.PropTypes.number,
-    step: React.PropTypes.number,
-    onStart: React.PropTypes.func,
-    onBounce: React.PropTypes.func,
-    onEnd: React.PropTypes.func,
-    interval: React.PropTypes.number,
-    direction: React.PropTypes.string,
-    delay: React.PropTypes.number,
-    autoStart: React.PropTypes.bool
+    loop: PropTypes.bool,
+    space: PropTypes.number,
+    step: PropTypes.number,
+    onStart: PropTypes.func,
+    onBounce: PropTypes.func,
+    onEnd: PropTypes.func,
+    interval: PropTypes.number,
+    direction: PropTypes.string,
+    delay: PropTypes.number,
+    autoStart: PropTypes.bool
 };
 const defaultProps = {
     loop: true,
