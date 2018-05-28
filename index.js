@@ -37,7 +37,7 @@ var defaultPropsFunc = function defaultPropsFunc(funcName) {
 };
 
 var propTypes = {
-    loop: _propTypes2.default.bool,
+    loop: _propTypes2.default.number,
     space: _propTypes2.default.number,
     step: _propTypes2.default.number,
     onStart: _propTypes2.default.func,
@@ -49,7 +49,7 @@ var propTypes = {
     autoStart: _propTypes2.default.bool
 };
 var defaultProps = {
-    loop: true,
+    loop: -1,
     space: 100,
     step: 6,
     onStart: defaultPropsFunc('onStart'),
@@ -83,7 +83,8 @@ var MarqueeDouble = function (_Component) {
             moverWidth: -1,
             containerWidth: -1,
             viewPortWidth: -1,
-            isMove: _this.props.autoStart
+            isMove: _this.props.autoStart,
+            loop: _this.props.loop
         };
         _this.moveTo = {
             left: function left() {
@@ -163,9 +164,17 @@ var MarqueeDouble = function (_Component) {
             // 이벤트 발생
 
             if (direction == 'left' && left == 0 || direction == 'right' && right == containerWidth - viewPortWidth) {
+                if (this.state.loop !== -1 && this.state.loop <= 0) {
+                    this.stop();
+                    return;
+                }
+                this.setState({
+                    loop: --this.state.loop
+                });
                 onStart();
             }
             if (direction == 'left' && left <= -moverWidth / 2 || direction == 'right' && right < moverWidth - (singleWidth + viewPortWidth)) {
+
                 this.moveTo[direction]();
                 return;
             }

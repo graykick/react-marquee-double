@@ -32,7 +32,7 @@ import MarqueeDouble from 'react-marquee-double';
   direction={'left'}
   delay={1000}
   onStart={()=>{this.marquee.delay()}}>
-  <h1>I’m like TT Just like TT Tell me that you’d be my baby<h1>
+  <h1>I’m like TT Just like TT Tell me that you’d be my baby</h1>
 </MarqueeDouble>  
 ```
 
@@ -40,7 +40,7 @@ import MarqueeDouble from 'react-marquee-double';
 
 ## props
 
-- ##### loop: bool
+- ##### loop: number
 It is value that how much repeat moving.
 
 - ##### space: number
