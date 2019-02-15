@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import './App.css';
@@ -57,7 +57,7 @@ class MarqueeDouble extends Component {
         };
         this.moveTo = {
             left: () => {
-                this.setState({left: 0});
+                this.setState({ left: 0 });
             },
             right: () => {
                 this.setState({
@@ -83,19 +83,19 @@ class MarqueeDouble extends Component {
         this.delay = this.delay.bind(this);
     }
     start() {
-        const {isMove} = this.state;
+        const { isMove } = this.state;
         if (!isMove) {
             this.mover = setInterval(this.move, this.props.interval);
-            this.setState({isMove: true})
+            this.setState({ isMove: true })
         }
     }
     stop() {
         clearInterval(this.mover);
-        this.setState({isMove: false})
+        this.setState({ isMove: false })
     }
     delay() {
 
-        const {delay} = this.props;
+        const { delay } = this.props;
         this.stop();
         this.delayer = setTimeout(() => {
             this.start();
@@ -121,13 +121,14 @@ class MarqueeDouble extends Component {
         } = this.props;
         // 이벤트 발생
         if ((direction == 'left' && left == 0) || (direction == 'right' && right == containerWidth - viewPortWidth)) {
-            if(this.state.loop !== -1 && this.state.loop <= 0) {
+            if (this.state.loop !== -1 && this.state.loop <= 0) {
                 this.stop();
-                return; 
+                return;
+            } else if (this.state.loop !== -1) {
+                this.setState({
+                    loop: --this.state.loop
+                })
             }
-            this.setState({
-                loop: --this.state.loop
-            })
             onStart();
         }
         if ((direction == 'left' && left <= - moverWidth / 2) || (direction == 'right' && right < (moverWidth - (singleWidth + viewPortWidth)))) {
@@ -138,7 +139,7 @@ class MarqueeDouble extends Component {
         this.direction[direction]();
     }
     componentDidMount() {
-        const {interval, direction, autoStart, delay} = this.props;
+        const { interval, direction, autoStart, delay } = this.props;
         ReactDOM.findDOMNode(this.single).style.display = "inline-block";
         this.singleNode = ReactDOM.findDOMNode(this.single);
         this.moverDivNode = ReactDOM.findDOMNode(this.moverDiv);
@@ -153,7 +154,7 @@ class MarqueeDouble extends Component {
         const containerWidth = this.containerNode.offsetWidth;
         const viewPortWidth = window.innerWidth || document.body.clientWidth;
 
-        this.setState({singleWidth: singleWidth, moverWidth: moverWidth, containerWidth: containerWidth, viewPortWidth: viewPortWidth});
+        this.setState({ singleWidth: singleWidth, moverWidth: moverWidth, containerWidth: containerWidth, viewPortWidth: viewPortWidth });
         if (direction == 'right') {
             this.moverDivNode.style.right = `${containerWidth - viewPortWidth}px`;
             this.setState({
@@ -173,8 +174,8 @@ class MarqueeDouble extends Component {
         clearTimeout(this.delayer);
     }
     render() {
-        const {space, direction} = this.props;
-        const {left} = this.state;
+        const { space, direction } = this.props;
+        const { left } = this.state;
         const style = {
             paddingRight: direction == 'left'
                 ? `${space}px`
@@ -187,7 +188,7 @@ class MarqueeDouble extends Component {
             transform: `translateX(${left}px)`
         }
         const single = (
-            <span className="Marquee-Child-Single" style={style} ref= {(ref => {this.single = ref})}>{this.props.children}</span>
+            <span className="Marquee-Child-Single" style={style} ref={(ref => { this.single = ref })}>{this.props.children}</span>
         );
         return (
             <div className={this.props.className ? 'MarqueeC-Div ' + this.props.className : 'MarqueeC-Div'} ref={(ref) => {
@@ -199,10 +200,10 @@ class MarqueeDouble extends Component {
                     <table className="Marquee-Table">
                         <tbody>
                             <tr>
-                                <td style={{padding: 0}}>
+                                <td style={{ padding: 0 }}>
                                     {single}
                                 </td>
-                                <td style={{padding: 0}}>
+                                <td style={{ padding: 0 }}>
                                     {single}
                                 </td>
                             </tr>
