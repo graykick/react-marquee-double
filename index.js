@@ -167,10 +167,11 @@ var MarqueeDouble = function (_Component) {
                 if (this.state.loop !== -1 && this.state.loop <= 0) {
                     this.stop();
                     return;
+                } else if (this.state.loop !== -1) {
+                    this.setState({
+                        loop: --this.state.loop
+                    });
                 }
-                this.setState({
-                    loop: --this.state.loop
-                });
                 onStart();
             }
             if (direction == 'left' && left <= -moverWidth / 2 || direction == 'right' && right < moverWidth - (singleWidth + viewPortWidth)) {
